@@ -338,6 +338,7 @@ def main():
         layout="wide",
     )
     init_session_state()
+    
     handle_pending_scroll()
     force_scroll_top()
     if st.session_state.stage == "welcome":
