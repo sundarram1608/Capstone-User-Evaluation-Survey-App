@@ -179,7 +179,7 @@ def render_instructions_expander(page_name):
                             There are 3 sections in this evaluation survey:
                             - :blue[Profile]: Complete a short profile form
                             - :blue[Rating AI generated clips]: Rate 6 AI generated carnatic musical clips
-                            - :blue[Clip A v/s Clip B]: Compare 6 audio pairs of two music generation models' AI generated clips
+                            - :blue[Clip A v/s Clip B]: Compare 6 pairs of AI generated music (12 clips) from two different music generation models' 
                             
                             ****:blue[Approximate time to complete the survey:]**** 15 ~ 20 mins
 
