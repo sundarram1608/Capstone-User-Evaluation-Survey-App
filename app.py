@@ -327,9 +327,9 @@ def show_final_page():
 
 def main():
     st.set_page_config(
-        page_title="Carnatic Music Continuation Evaluation",
-        layout="wide",
-    )
+                        page_title="Master's Capstone Survey",
+                        layout="wide",
+                    )
     init_session_state()
 
     if st.session_state.stage == "welcome":
