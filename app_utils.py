@@ -5,8 +5,33 @@ from datetime import datetime
 import pandas as pd
 import math
 import streamlit as st
+from streamlit_scroll_to_top import scroll_to_here
 import gspread
 from google.oauth2.service_account import Credentials
+import streamlit.components.v1 as components
+
+def force_scroll_top():
+    components.html(
+        """
+        <script>
+        const selectors = [
+          '[data-testid="stAppViewContainer"]',
+          'section.main',
+          '.main'
+        ];
+
+        for (const sel of selectors) {
+          const el = window.parent.document.querySelector(sel);
+          if (el) {
+            el.scrollTo(0, 0);
+          }
+        }
+
+        window.parent.scrollTo(0, 0);
+        </script>
+        """,
+        height=0,
+    )
 
 
 # Initialize session state with default values
@@ -19,10 +44,18 @@ def init_session_state():
                     "profile_saved": False,
                     "likert_saved": False,
                     "pairwise_saved": False,
+                    "scroll_to_top_pending": False
                 }
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
+
+
+# Handle pending scroll to top
+def handle_pending_scroll():
+    if st.session_state.get("scroll_to_top_pending", False):
+        scroll_to_here(0, key=f"scroll_top_{st.session_state.stage}")
+        st.session_state.scroll_to_top_pending = False
 
 
 # Generate a unique participant ID
