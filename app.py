@@ -1,5 +1,4 @@
 import streamlit as st
-
 from app_utils import *
 
 LIKERT_TRIALS_XLSX = "data/likert_trials.xlsx"
@@ -27,11 +26,13 @@ def show_welcome_page():
     if st.button("Start Survey", type="primary"):
         if st.session_state.participant_id is None:
             st.session_state.participant_id = generate_participant_id()
+        st.session_state.scroll_to_top_pending = True
         st.session_state.stage = "profile"
         st.rerun()
 
 
 def show_profile_page():
+    handle_pending_scroll()
     st.title("Participant Profile")
     render_instructions_expander("profile")
 
@@ -137,11 +138,13 @@ def show_profile_page():
                                                                                                 pairwise_df,
                                                                                                 seed=st.session_state.participant_id,
                                                                                                 )
+        st.session_state.scroll_to_top_pending = True                                                                                                
         st.session_state.stage = "likert"
         st.rerun()
 
 
 def show_likert_page():
+    handle_pending_scroll()
     st.title("Rating AI generated clips")
     render_instructions_expander("likert")
 
@@ -234,11 +237,13 @@ def show_likert_page():
             # save_likert_responses_gsheet(rows, GOOGLE_SHEET_NAME)
             st.session_state.likert_saved = True
 
+        st.session_state.scroll_to_top_pending = True
         st.session_state.stage = "pairwise"
         st.rerun()
 
 
 def show_pairwise_page():
+    handle_pending_scroll()
     st.title("Baseline v/s Fine-tuned clips")
     render_instructions_expander("pairwise")
 
@@ -315,11 +320,13 @@ def show_pairwise_page():
             # save_pairwise_responses_gsheet(rows, GOOGLE_SHEET_NAME)
             st.session_state.pairwise_saved = True
 
+        st.session_state.scroll_to_top_pending = True
         st.session_state.stage = "final"
         st.rerun()
 
 
 def show_final_page():
+    handle_pending_scroll()
     st.title("Thank You")
     render_instructions_expander("final")
 
@@ -327,11 +334,12 @@ def show_final_page():
 
 def main():
     st.set_page_config(
-                        page_title="Master's Capstone Survey",
-                        layout="wide",
-                    )
+        page_title="Master's Capstone Survey",
+        layout="wide",
+    )
     init_session_state()
-
+    handle_pending_scroll()
+    force_scroll_top()
     if st.session_state.stage == "welcome":
         show_welcome_page()
     elif st.session_state.stage == "profile":
