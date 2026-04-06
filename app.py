@@ -214,7 +214,7 @@ def show_likert_page():
                                 placeholder="Any other feedback on the generated continuation",
                             )
 
-    if st.button("Submit Likert Section", type="primary"):
+    if st.button("Next", type="primary"):
         trial_ids = likert_df["trial_id"].tolist()
         is_valid, msg = validate_likert_section(trial_ids)
 
@@ -298,7 +298,7 @@ def show_pairwise_page():
                             placeholder="Any other feedback on the Clip comparison",
                         )
 
-    if st.button("Submit Pairwise Section", type="primary"):
+    if st.button("Submit", type="primary"):
         trial_ids = pairwise_df["trial_id"].tolist()
         is_valid, msg = validate_pairwise_section(trial_ids)
 
