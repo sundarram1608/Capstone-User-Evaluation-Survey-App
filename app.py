@@ -15,7 +15,7 @@ GOOGLE_SPREADSHEET_ID = st.secrets["app"]["google_spreadsheet_id"]
 
 
 def show_welcome_page():
-    st.title("Evalation of Carnatic Music Generation")
+    st.title("Evaluation of Carnatic Music Generation")
     st.caption("A survey to evaluate the perceptual musical quality and stylistic authenticity of AI-generated Carnatic music continuations.")
     intro_text = f'''**Thank you for your consent to participate in this evaluation survey.**\n\nThis survey is a part of my Master’s research project focused on improving AI-based music generation for non-western musical traditions of cultural significance.\n\nMost of the existing music generation models are pre-dominantly trained on Western music data, which can limit their ability to accurately represent other rich musical traditions such as Carnatic music. As part of this research capstone, I have fine-tuned an existing music generation model to better adapt to the Carnatic music domain, with the goal of improving the model’s ability to generate musically coherent and stylistically accurate continuations.\n\n ***In this evaluation, you will listen to a set of authentic and AI generated Carnatic audio clips and provide feedback on aspects such as musical quality, continuity, and stylistic authenticity of AI generated continuations. Your responses will help assess how well the model has adapted to the Carnatic music style.***'''
     
